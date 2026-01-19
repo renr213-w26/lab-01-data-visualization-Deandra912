@@ -71,6 +71,23 @@ Comment: A graph with banwidth 1,000 is the most appropriate because it shows th
 
 ### Question 2
 
+```{r}
+ggplot(midwest, aes(y = popdensity)) +
+  geom_boxplot() +
+  labs(
+    x = "Midwestern counties",
+    y = "Population density",
+    title = "Population density of midwesten counties",
+    subtitle = "Boxplot of population density"
+  )
+```
+
+```{r}
+view(midwest)
+```
+
+Comment: The distribution of population density among Midwestern counties is highly right-skewed, which means most counties having relatively low population density. One clear outlier is Cook County, IL, which has much higher population density than most other counties.
+
 ### Question 3
 
 ### Question 4
