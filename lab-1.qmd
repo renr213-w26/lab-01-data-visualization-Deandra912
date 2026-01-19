@@ -90,6 +90,27 @@ Comment: The distribution of population density among Midwestern counties is hig
 
 ### Question 3
 
+```{r}
+ggplot(midwest, aes(x = percollege , y = percbelowpoverty, 
+                    color = state, shape = state)) +
+  geom_point() +
+  labs(
+    x = "Percent college educated",
+    y = "Percent of people below poverty line",
+    color = "State",
+    shape = "State",
+    title = "College education and poverty in Midwestern counties",
+  )
+```
+Comment:
+Overall, there is a negative relationship between percentage of people with a college degree and the percentage of people living below the poverty line. Counties with higher levels of college education tend to have lower poverty rates, while counties with lower levels of college education tend to have higher poverty rates.
+
+```{r}
+view(midwest)
+```
+Comment:
+From the scatter plot above, WI with square and purple point is the outlier. Based on the data, it can be seen that Minominee, WI has 48% of people below poverty with 7% of people college educated.
+
 ### Question 4
 
 ### Question 5
