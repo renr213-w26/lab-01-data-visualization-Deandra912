@@ -67,7 +67,7 @@ ggplot(midwest, aes(x = popdensity)) +
   )
 ```
 
-Comment: A graph with banwidth 1,000 is the most appropriate because it shows the overall distribution clearly without losing important detail, not too noisy nor oversmooth.
+A graph with binwidth 1,000 is the most appropriate because it shows the overall distribution clearly without losing important detail, not too noisy nor oversmooth.
 
 ### Question 2
 
@@ -86,7 +86,7 @@ ggplot(midwest, aes(y = popdensity)) +
 view(midwest)
 ```
 
-Comment: The distribution of population density among Midwestern counties is highly right-skewed, which means most counties having relatively low population density. One clear outlier is Cook County, IL, which has much higher population density than most other counties.
+The distribution of population density among Midwestern counties is highly right-skewed, which means most counties having relatively low population density. One clear outlier is Cook County, IL, which has much higher population density than most other counties.
 
 ### Question 3
 
@@ -103,13 +103,13 @@ ggplot(midwest, aes(x = percollege , y = percbelowpoverty,
   )
 ```
 
-Comment: Overall, there is a negative relationship between percentage of people with a college degree and the percentage of people living below the poverty line. Counties with higher levels of college education tend to have lower poverty rates, while counties with lower levels of college education tend to have higher poverty rates.
+Overall, there is a negative relationship between percentage of people with a college degree and the percentage of people living below the poverty line. Counties with higher levels of college education tend to have lower poverty rates, while counties with lower levels of college education tend to have higher poverty rates.
 
 ```{r}
 view(midwest)
 ```
 
-Comment: From the scatter plot above, WI with square and purple point is the outlier. Based on the data, it can be seen that Minominee, WI has 48% of people below poverty with 7% of people college educated.
+From the scatter plot above, WI with square and purple point is the outlier. Based on the data, it can be seen that Minominee, WI has 48% of people below poverty with 7% of people college educated.
 
 ### Question 4
 
@@ -129,6 +129,24 @@ ggplot(midwest, aes(x = percollege , y = percbelowpoverty,
 ```
 
 ### Question 5
+```{r}
+ggplot(midwest, aes(x = state, y = area)) +
+  geom_boxplot() +
+  labs(
+    x = "State",
+    y = "County area",
+    title = "County area by state in the Midwest",
+    subtitle = "Side-by-side boxplots of county area"
+  )
+```
+Typical county sizes vary across Midwestern states. Wisconsin and Michigan tend to have larger counties on average, as indicated by higher median county areas. However, Indiana and Ohio generally have smaller counties with lower median values.
+
+Variability in county size also differs by state. Wisconsin and Michigan show greater variability, shown by taller boxes and longer whiskers. While Indiana and Ohio have more compact box plot which means the county sizes in these states are less variable.
+
+```{r}
+view(midwest)
+```
+The single largest county by area is Marquette, Michigan with 0.110. Furthermore, the top 10 of county areas are dominated by Wisconsin and Michigan and this result is reasonable given Wisconsin and Michigan are the largest states.
 
 ### Question 6
 
