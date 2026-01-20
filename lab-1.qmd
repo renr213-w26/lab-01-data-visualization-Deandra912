@@ -129,6 +129,7 @@ ggplot(midwest, aes(x = percollege , y = percbelowpoverty,
 ```
 
 ### Question 5
+
 ```{r}
 ggplot(midwest, aes(x = state, y = area)) +
   geom_boxplot() +
@@ -139,6 +140,7 @@ ggplot(midwest, aes(x = state, y = area)) +
     subtitle = "Side-by-side boxplots of county area"
   )
 ```
+
 Typical county sizes vary across Midwestern states. Wisconsin and Michigan tend to have larger counties on average, as indicated by higher median county areas. However, Indiana and Ohio generally have smaller counties with lower median values.
 
 Variability in county size also differs by state. Wisconsin and Michigan show greater variability, shown by taller boxes and longer whiskers. While Indiana and Ohio have more compact box plot which means the county sizes in these states are less variable.
@@ -146,16 +148,76 @@ Variability in county size also differs by state. Wisconsin and Michigan show gr
 ```{r}
 view(midwest)
 ```
+
 The single largest county by area is Marquette, Michigan with 0.110. Furthermore, the top 10 of county areas are dominated by Wisconsin and Michigan and this result is reasonable given Wisconsin and Michigan are the largest states.
 
 ### Question 6
 
+```{r}
+midwest <- midwest |>
+  mutate(metro = if_else(inmetro == 1, "Yes","No"))
+```
+
+```{r}
+ggplot(midwest, aes(x = state, fill = metro))+
+  geom_bar(position = "fill")+
+  labs(
+    x = "State",
+    y = "Proportion of counties",
+    fill = "Metro area",
+    title = "Proportion of counties in metropolitan areas by state"
+  )
+```
+
+The share of counties located in metropolitan areas varies across Midwestern states. Ohio has the highest proportion of metro counties, for about 45%. Indiana follows with about 40% of counties classified as metropolitan. Michigan has around 30%, while Illinois and Wisconsin have lower proportions at 25%.
+
 ### Question 7
+
+```{r}
+ggplot(midwest, aes(x = percollege, y = percbelowpoverty, color = percwhite)) +
+  geom_point(size = 2, alpha = 0.5) +
+  facet_wrap( ~ state, ncol = 3) +
+  labs (
+    x = "% college educated",
+    y = "% below poverty line",
+    color = "% white",
+    title = "College education and poverty in Midwestern counties\nColored by percent in White"
+  ) +
+  theme_minimal()
+```
+
+A clear outlier in Wisconsin is Menominee , Wisconsin. When looking at population composition, this county has a noticeably higher percentage of residents classified as “other races” compared to most counties, indicated with darker point.
 
 ## Part 2
 
 **Enough about the Midwest!**
 
+```{r}
+nc_county <- read_csv("data/nc-county.csv")
+```
+
 ### Question 8
+I expect a negative relationship between land area and population density. For instance, land with larger land area tends to be more rural thereby the population density is lower than the smaller land area.
+
+```{r}
+ggplot(nc_county, aes(x = land_area_mi2, y = density)) +
+  geom_point(alpha = 0.5) +
+  labs(
+    x = "Land area (in square miles)",
+    y = "Population density (in people per square mile)",
+    title = "Population density vs land area in North Carolina counties"
+  )
+```
+The plot shows a negative relationship between land area and population density. Smaller counties tend to have higher population densities, while larger counties generally have lower population densities.
 
 ### Question 9
+```{r}
+ggplot(nc_county, aes(x = land_area_m2, y = density)) +
+  geom_point(alpha = 0.5) +
+  labs(
+    x = "Land area (in square meters)",
+    y = "Population density (in people per square mile)",
+    title = "Population density vs land area in North Carolina counties"
+  )
+```
+The scatter plot using land area in square meters shows the same negative relationship as the plot using land area in square miles. The only difference is the scale of the x-axis, which is much larger when land area is measured in square meters. Changing the units does not change the underlying relationship between land area and population density.
